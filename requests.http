@@ -1,0 +1,101 @@
+
+
+
+# GET http://localhost:5024/manual-json
+# Accept: application/json
+
+# ###
+
+# GET http://localhost:5024/json
+# Accept: application/json
+
+
+# ###
+# GET http://localhost:5024/auto
+# Accept: application/json
+
+# ###
+# Get http://localhost:5024/custom-serializer
+# Accept: application/json
+
+
+# ###
+# POST http://localhost:5024/json
+# Content-Type: application/json
+
+# {
+#   "UserName": "Alice",
+#   "UserAge": 30,
+#   "extra": "ignored"
+# }
+
+# ###
+# POST http://localhost:5024/json
+# Content-Type: application/json
+
+# <Person>
+#   <UserName>Bob</UserName>
+#   <UserAge>25</UserAge>
+# </Person>
+
+
+###
+
+@hostname = http://localhost:5024
+@secret = mysecretpassword011
+@blog_base = {{hostname}}/blogs
+
+###
+
+POST {{blog_base}}
+Content-Type: application/json
+
+{
+  "Title": "Post without Secret",
+  "Body": "Should fail authentication check."
+}
+
+###
+
+POST {{blog_base}}
+Content-Type: application/json
+X-Password: {{secret}}
+
+{
+  "Title": "My New Blog Post",
+  "Body": "This post should work."
+}
+
+###
+
+
+GET {{blog_base}}/3
+
+###
+
+
+GET {{blog_base}}
+
+###
+
+
+PUT {{blog_base}}/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "Title": "My Updated Blog Post",
+  "Body": "The content has been changed."
+}
+
+###
+
+
+GET {{blog_base}}/3
+
+###
+
+
+DELETE {{blog_base}}/3
+
+

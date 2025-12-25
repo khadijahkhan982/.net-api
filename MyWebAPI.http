@@ -1,0 +1,16 @@
+# @MyWebAPI_HostAddress = http://localhost:5024
+
+GET http://localhost:5024/users/10/posts/hello-only
+
+###
+GET http://localhost:5024/products/45
+
+
+###
+GET http://localhost:5024/search?q=laptop&page=1
+
+###
+GET http://localhost:5024
+
+###
+GET http://localhost:5024/blogs/0
